@@ -1,40 +1,34 @@
 class Solution {
-    public String convert(String s,int n) {
+    public String convert(String s, int numRows) {
+        
+        if( numRows==1)
+        return s;
 
-        if(n==1) return s;
 
-        char[][] c=new char[n][s.length()];
+        String[] row=new String[numRows];
+        for(int i=0;i<numRows;i++)
+        row[i]="";
 
-        int si=0;
-        int col=0;
-
-        while(si<s.length())
+        int ind=0;
+        int d=1;
+        for(char c:s.toCharArray())
         {
-            for(int r=0;r<n&&si<s.length();r++)
-            {
-                c[r][col]=s.charAt(si++);
-            }
+                row[ind]+=c;
 
-            col++;
-            for(int r=n-2;r>=1&&si<s.length();r--)
-            {
-                c[r][col]=s.charAt(si++);
-                col++;
-            }
-        }
+                if(ind==0)
+                d=1;
 
-        String res="";
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<s.length();j++)
-            {
-                if(c[i][j]!='\0')
+                else if(ind==numRows-1)
                 {
-                    res+=c[i][j];
+                    d=-1;
                 }
-            }
+                ind+=d;
         }
+        String res="";
+        for(String i:row)
+        res+=i;
 
         return res;
+
     }
 }
