@@ -1,39 +1,84 @@
 class Solution {
-    public List<Integer> spiralOrder(int[][] mat) {
-      List<Integer> ans=new ArrayList<>();
-        int t=0,b=mat.length-1;
-        int l=0,r=mat[0].length-1;
-        int index=0;
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> r = new ArrayList<>();
 
-  while(t <= b && l <= r){
+        if (matrix.length == 0) return r;
 
-            for(int j = l; j <= r; j++)
-            {
-                ans.add(mat[t][j]);
+        int top = 0, bottom = matrix.length - 1;
+        int left = 0, right = matrix[0].length - 1;
+
+        while (top <= bottom && left <= right) {
+
+            // 1. left → right (top row)
+            for (int i = left; i <= right; i++)
+                r.add(matrix[top][i]);
+            top++;
+
+            // 2. top → bottom (right column)
+            for (int i = top; i <= bottom; i++)
+                r.add(matrix[i][right]);
+            right--;
+
+            // 3. right → left (bottom row)
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--)
+                    r.add(matrix[bottom][i]);
+                bottom--;
             }
-            t++;
-            for(int i = t; i <= b; i++)
-            {
-                ans.add(mat[i][r]);
-            }
-            r--;
-            if(t <= b)
-            {
-                for(int j = r; j >= l; j--)
-                {
-                    ans.add(mat[b][j]);
-                }
-                b--;
-            }
-            if(l <= r)
-            {
-                for(int i = b; i >= t; i--)
-                {
-                    ans.add(mat[i][l]);
-                }
-                l++;
+
+            // 4. bottom → top (left column)
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--)
+                    r.add(matrix[i][left]);
+                left++;
             }
         }
-        return ans;
+        return r;
     }
 }
+
+
+/*class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        ArrayList<Integer> r=new ArrayList<>();
+        int top=0,bottom=matrix.length-1;
+        int left=0,right=matrix[0].length-1;
+        int i;
+        while(top<=bottom && left<=right)
+        {
+
+//1.left-->right
+            for(i=left;i<=right;i++)
+            r.add(matrix[top][i]);
+
+
+//2.top-->bottom
+            top++;
+
+            for(i=top;i<=bottom;i++)
+            r.add(matrix[i][right]);
+
+            right--;
+
+
+//3.right-->left
+            if(left<=right)
+            {
+                for(int j=right;j>=left;j--)
+                r.add(matrix[bottom][j]);
+
+                bottom--;
+            }
+//4. bottom-->top
+            if(top<=bottom)
+            {
+                for(int j=bottom;j>=top;j--)
+                    r.add(matrix[j][left]);
+
+                left++;
+            }
+        }
+        return r;
+    }
+}
+*/
