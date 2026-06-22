@@ -1,7 +1,6 @@
 class Solution {
     public int maxNumberOfBalloons(String text) {
         int count=Integer.MAX_VALUE;
-        text=text.toLowerCase();
         int [] freq=new int[26];
         for(char c:text.toCharArray())
         {
