@@ -1,6 +1,6 @@
 class Solution {
     public int compress(char[] chars) {
-       String s="";
+       StringBuilder s=new StringBuilder();
        
        for(int i=0;i<chars.length;)
        {
@@ -12,10 +12,10 @@ class Solution {
                 i++;
             }
             if(count==1)
-            s=s+current;
+            s.append(current);
 
             else
-            s=s+current+count;
+            s.append(current).append(count);
        }
 
        for(int i=0;i<s.length();i++)
