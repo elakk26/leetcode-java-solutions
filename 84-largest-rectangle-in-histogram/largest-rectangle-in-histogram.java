@@ -3,6 +3,7 @@ class Solution {
         Stack<Integer> st = new Stack<>();
         int max = 0;
         int n = h.length;
+
         for (int i = 0; i <= n; i++) {
             int cur = (i == n) ? 0 : h[i];
 
