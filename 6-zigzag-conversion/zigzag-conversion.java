@@ -1,34 +1,36 @@
 class Solution {
     public String convert(String s, int numRows) {
         
-        if( numRows==1)
+        if(numRows==1)
         return s;
+        String[] res=new String[numRows];
 
-
-        String[] row=new String[numRows];
         for(int i=0;i<numRows;i++)
-        row[i]="";
+        res[i]="";
 
-        int ind=0;
-        int d=1;
-        for(char c:s.toCharArray())
+
+        int index=0;
+        int n=0;
+        for(int i=0;i<s.length();i++)
         {
-                row[ind]+=c;
+            char c=s.charAt(i);
 
-                if(ind==0)
-                d=1;
+            if(index==0)
+            {
+                n=1;
+            }
 
-                else if(ind==numRows-1)
-                {
-                    d=-1;
-                }
-                ind+=d;
+            if(index==numRows-1)
+            {
+                n=-1;
+            }
+            res[index]+=c;
+            index+=n;
         }
-        String res="";
-        for(String i:row)
-        res+=i;
+        String r="";
 
-        return res;
-
+        for(String i:res)
+        r+=i;
+        return r;
     }
 }
