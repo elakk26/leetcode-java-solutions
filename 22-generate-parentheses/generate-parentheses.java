@@ -2,25 +2,27 @@ class Solution {
     static List<String> res;
     public List<String> generateParenthesis(int n) {
         res=new ArrayList<>();
-
-        String cur="";
-        backtrack(cur,0,0,n);
+        
+        rec(0,0,"",n);
         return res;
     }
 
-    public static void backtrack(String cur,int open,int close,int n)
+    public static void rec(int open,int close,String r,int n)
     {
-        if(cur.length()==2*n)
-        {res.add(cur);
-        return;}
+        if(r.length()==(n*2))
+        {
+            res.add(r);
+            return;
+        }
 
         if(open<n)
         {
-        backtrack(cur+'(',open+1,close,n);
+            rec(open+1,close,r+'(',n);
         }
+
         if(close<open)
         {
-        backtrack(cur+')',open,close+1,n);
+            rec(open,close+1,r+')',n);
         }
     }
 }
