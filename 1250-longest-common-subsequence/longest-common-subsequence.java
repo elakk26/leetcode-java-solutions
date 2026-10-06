@@ -1,26 +1,31 @@
 class Solution {
-    public int longestCommonSubsequence(String text1, String text2) {
-        int[][] dp=new int[text1.length()][text2.length()];
-        for(int i=0;i<text1.length();i++)
-        {
-            Arrays.fill(dp[i],-1);
-        }
-        return fun(text1,text2,0,0,dp);
+    public int longestCommonSubsequence(String t1, String t2) {
+
+        Integer[][] dp=new Integer[t1.length()][t2.length()];
+
+       return fun(t1,t2,0,0,dp); 
     }
 
-    public static int fun(String s1,String s2, int i1,int i2,int[][] dp)
+    public static int fun(String t1,String t2, int i1,int i2,Integer dp[][])
     {
-        if(i1>=s1.length() || i2>=s2.length())
-        return 0;
-
-        if(dp[i1][i2]!=-1)
-        return dp[i1][i2];
-        if(s1.charAt(i1)==s2.charAt(i2))
+        if(i1>=t1.length()||i2>=t2.length())
         {
-            return dp[i1][i2]=1+fun(s1,s2,i1+1,i2+1,dp);
+            return 0;
         }
-        else
-        return dp[i1][i2]= Math.max(fun(s1,s2,i1+1,i2,dp),fun(s1,s2,i1,i2+1,dp));
-    }
+        if(dp[i1][i2]!=null)
+        return dp[i1][i2]; 
+        
+        if(t1.charAt(i1)==t2.charAt(i2))
+        {
+            dp[i1][i2]=1+fun(t1,t2,i1+1,i2+1,dp);
+            return dp[i1][i2];
+        }
+        
 
+        else
+        {
+            dp[i1][i2]=Math.max(fun(t1,t2,i1+1,i2,dp),fun(t1,t2,i1,i2+1,dp));
+            return dp[i1][i2];
+        }
+    }
 }
