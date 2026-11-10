@@ -23,8 +23,6 @@ class Solution {
             }
         }
         res.add(new int[] {prevs,preve});
-        //System.out.print(res);
-
         return res.toArray(new int[res.size()][]);
     }
 }
